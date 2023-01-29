@@ -57,6 +57,8 @@
                 <th>cda house no</th>
                 <th>cda apartment no</th>
                 <th>cda address details</th>
+                <th>Stutus</th>
+                    <th style="width:3rem">Action</th>
               </tr>
           </thead>
           <tbody>
@@ -84,6 +86,12 @@
             <td>{{$fdata->cda_house_no}}</td>
             <td>{{$fdata->cda_apartment_no}}</td>
             <td>{{$fdata->cda_address_details}}</td>
+            <td></td>
+            <td>
+              <button class="btn btn-outline-warning btn-danger font-weight-bold">Preview</button>
+              <button class="btn btn-outline-warning btn-danger font-weight-bold">Print</button>
+
+            </td>
 
 
 
@@ -136,6 +144,9 @@
                     <th>cda house no</th>
                     <th>cda apartment no</th>
                     <th>cda address details</th>
+                    <th>Stutus</th>
+                    <th>Action</th>
+                   
                   </tr>
              
           </tfoot>
