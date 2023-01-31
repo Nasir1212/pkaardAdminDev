@@ -40,16 +40,21 @@
         <table id="example1" class="table table-bordered table-striped">
           <thead>
             <tr>
+                <th>#</th>
                 <th>Card ID</th>
                 <th>Invoice</th>
                 <th>Name</th>
                 <th>Email</th>
                 <th>phone </th>
                 <th>Reference  </th>
-                <th>Reg: Date</th>
+                <th>Date of Birth </th>
+                <th>Profession</th> 
+                <th>Mediam</th>
+                <th>Gender</th>
+                <th>Nationality</th>
                 <th>Division</th>
                 <th>District</th>
-                <th>Upzilla</th>
+               
                 <th>cda division</th>
                 <th>cda district</th>
                 <th>cda upzilla</th>
@@ -58,27 +63,34 @@
                 <th>cda apartment no</th>
                 <th>cda address details</th>
                 <th>Stutus</th>
-                    <th style="width:3rem">Action</th>
+                <th style="width:3rem">Action</th>
               </tr>
           </thead>
           <tbody>
        
-
+          @php
+          $i = 1
+          @endphp
         @foreach ($data as $fdata)
 
         {{-- <p>This is user {{ $user->id }}</p> --}}
         <tr>
-            <td>{{$fdata->card_id}}</td>
+          <td>{{$i++}}</td>
+            <td>1509002{{$fdata->card_id}}</td>
             <td>{{$fdata->invoice_number}}</td>
          
             <td>{{$fdata->full_name}}</td>
             <td>{{$fdata->email}}</td>
             <td>{{$fdata->phone_number}}</td>
             <td>{{$fdata->reference_code}}</td>
-            <td>{{$fdata->register_date}}</td>
+            <td>{{$fdata->date_of_birth}}</td>
+            <td>{{$fdata->profession}}</td>
+            <td>{{$fdata->mediam}}</td>
+            <td>{{$fdata->gender}}</td>
+            <td>{{$fdata->nationality}}</td>
             <td>{{$fdata->division}}</td>
             <td>{{$fdata->district}}</td>
-            <td>{{$fdata->upzilla}}</td>
+       
             <td>{{$fdata->cda_division}}</td>
             <td>{{$fdata->cda_district}}</td>
             <td>{{$fdata->cda_upzilla}}</td>
@@ -126,29 +138,32 @@
           </tbody>
           <tfoot>
             
-                <tr>
-                    <th>Card ID</th>
-                    <th>Invoice</th>
-                    <th>Name</th>
-                    <th>Email</th>
-                    <th>phone </th>
-                    <th>Reference  </th>
-                    <th>Reg: Date</th>
-                    <th>Division</th>
-                    <th>District</th>
-                    <th>Upzilla</th>
-                    <th>cda division</th>
-                    <th>cda district</th>
-                    <th>cda upzilla</th>
-                    <th>cda road no</th>
-                    <th>cda house no</th>
-                    <th>cda apartment no</th>
-                    <th>cda address details</th>
-                    <th>Stutus</th>
-                    <th>Action</th>
-                   
-                  </tr>
+            <tr>
+              <th>#</th>
+              <th>Card ID</th>
+              <th>Invoice</th>
+              <th>Name</th>
+              <th>Email</th>
+              <th>phone </th>
+              <th>Reference  </th>
+              <th>Date of Birth </th>
+              <th>Profession</th> 
+              <th>Mediam</th>
+              <th>Gender</th>
+              <th>Nationality</th>
+              <th>Division</th>
+              <th>District</th>
              
+              <th>cda division</th>
+              <th>cda district</th>
+              <th>cda upzilla</th>
+              <th>cda road no</th>
+              <th>cda house no</th>
+              <th>cda apartment no</th>
+              <th>cda address details</th>
+              <th>Stutus</th>
+              <th style="width:3rem">Action</th>
+            </tr>
           </tfoot>
         </table>
       </div>
@@ -178,13 +193,14 @@
   <script src="{{ asset('assets/plugins/datatables-buttons/js/buttons.html5.min.js')}}"></script>
   <script src="{{ asset('assets/plugins/datatables-buttons/js/buttons.print.min.js')}}"></script>
   <script src="{{ asset('assets/plugins/datatables-buttons/js/buttons.colVis.min.js')}}"></script>
-  <!-- AdminLTE App -->
-  <script src="{{ asset('assets/dist/js/adminlte.min.js')}}"></script>
+  {{-- <!-- AdminLTE App -->
+  <script src="{{ asset('assets/dist/js/adminlte.min.js')}}"></script> --}}
   <script>
 
 $(function () {
     $("#example1").DataTable({
-      "responsive": false, "lengthChange": true, "autoWidth": true,
+      "responsive": true, "lengthChange": true, "autoWidth": true,   order: [[1, 'desc' ]], "aLengthMenu": [[100, 250, 500,1000, -1], [100, 250, 500 ,1000, "All"]],
+    
       "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
     }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
     // $('#example2').DataTable({

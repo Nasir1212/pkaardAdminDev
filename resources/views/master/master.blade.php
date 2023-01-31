@@ -29,7 +29,8 @@
   <link rel="stylesheet" href="{{ asset('assets/plugins/datatables-responsive/css/responsive.bootstrap4.min.css')}}">
   <link rel="stylesheet" href="{{ asset('assets/plugins/datatables-buttons/css/buttons.bootstrap4.min.css')}}">
   <link rel="stylesheet" href="{{ asset('assets/plugins/daterangepicker/daterangepicker.css')}}">
-
+  <link href="https://fonts.googleapis.com/css2?family=Galada&family=Mina&family=Roboto:ital,wght@0,500;1,300&display=swap" rel="stylesheet">
+  <link href="https://fonts.maateen.me/bangla/font.css" rel="stylesheet">
   
 <!-- jQuery -->
 <script src="{{ asset('assets/plugins/jquery/jquery.min.js')}}"></script>
@@ -40,9 +41,16 @@
 <!-- Bootstrap 4 -->
 <script src="{{ asset('assets/plugins/bootstrap/js/bootstrap.bundle.min.js')}} "></script>
 <script src="{{ asset('assets/js/bd_data.js')}}"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
+ <!-- AdminLTE App -->
+ <script src="{{ asset('assets/dist/js/adminlte.min.js')}}"></script>
 
-
+<style>
+  label{
+    font-family: 'Bangla', Arial, sans-serif !important;
+  }
+</style>
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
@@ -299,6 +307,16 @@
               <i class="nav-icon fas fa-tree"></i>
               <p>
                 Communication 
+                {{-- <span class="right badge badge-danger">New</span> --}}
+              </p>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a href="{{url('add_card_user')}}" class="nav-link">
+              <i class="nav-icon fas fa-tree"></i>
+              <p>
+                Add Card User 
                 {{-- <span class="right badge badge-danger">New</span> --}}
               </p>
             </a>

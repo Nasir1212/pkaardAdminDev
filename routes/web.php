@@ -15,6 +15,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/list_register','App\Http\Controllers\homeController@get_all_register');
 
+Route::post('/card_registation_add','App\Http\Controllers\homeController@card_registation_add');
+
 Route::get('/', function () {
     return view('dashboard');
 });
@@ -44,4 +46,8 @@ Route::get('profile',function(){
 
 Route::get('communication_view',function(){
     return view('communication_view');
+});
+
+Route::get('add_card_user',function(){
+    return view('add_card_user_view');
 });
