@@ -83,12 +83,22 @@
 
                 <div class="form-group col-sm-12 col-md-6 col-lg-6">
                   <label for="">Select Date </label>
-                    <div class="col-sm-12 col-md-6 col-lg-6  d-flex">
+                    <div class=" d-flex">
 
                         
         
-                        <input   class="form-control" placeholder="From" type="text" id="datetimepicker4">
-                        <input   class="form-control" placeholder="To" type="text">
+                      <div class="input-group date" id="reservationdate" data-target-input="nearest">
+                        <input type="text" class="form-control datetimepicker-input" data-target="#reservationdate" placeholder="From">
+                        <div class="input-group-append" data-target="#reservationdate" data-toggle="datetimepicker">
+                            <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                        </div>
+                    </div>
+                    <div class="input-group date" id="reservationdateTo" data-target-input="nearest">
+                      <input type="text" class="form-control datetimepicker-input" data-target="#reservationdateTo" placeholder="To">
+                      <div class="input-group-append" data-target="#reservationdateTo" data-toggle="datetimepicker">
+                          <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                      </div>
+                  </div>
                     </div>
     
               </div>
@@ -391,6 +401,17 @@ document.getElementById('district').innerHTML = dist_ele;
 </script>
 
 
+<script src="{{asset('assets/plugins/moment/moment.min.js')}}"></script>
+<script src="{{asset('assets/plugins/inputmask/jquery.inputmask.min.js')}}"></script>
+<!-- date-range-picker -->
+<script src="{{asset('assets/plugins/daterangepicker/daterangepicker.js')}}"></script>
+<!-- bootstrap color picker -->
+<script src="{{asset('assets/plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.min.js')}}"></script>
+<!-- Tempusdominus Bootstrap 4 -->
+<script src="{{asset('assets/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js')}}"></script>
+<!-- Bootstrap Switch -->
+<script src="{{asset('assets/plugins/bootstrap-switch/js/bootstrap-switch.min.js')}}"></script>
+
   <script src="{{ asset('assets/plugins/datatables/jquery.dataTables.min.js')}}"></script>
   <script src="{{ asset('assets/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js')}}"></script>
   <script src="{{ asset('assets/plugins/datatables-responsive/js/dataTables.responsive.min.js')}}"></script>
@@ -403,8 +424,8 @@ document.getElementById('district').innerHTML = dist_ele;
   <script src="{{ asset('assets/plugins/datatables-buttons/js/buttons.html5.min.js')}}"></script>
   <script src="{{ asset('assets/plugins/datatables-buttons/js/buttons.print.min.js')}}"></script>
   <script src="{{ asset('assets/plugins/datatables-buttons/js/buttons.colVis.min.js')}}"></script>
-  <!-- AdminLTE App -->
   <script src="{{ asset('assets/dist/js/adminlte.min.js')}}"></script>
+  <!-- AdminLTE App -->
   <script src="{{ asset('assets/plugins/daterangepicker/daterangepicker.js')}}"></script>
   <script>
 
@@ -414,11 +435,21 @@ $('#datetimepicker4').datetimepicker({
         icons: {
                   time: "fa fa-clock-o",
                   date: "fa fa-calendar",
-                   up: "fa fa-arrow-up",
+                   up: "fa  fa-arrow-up",
                    down: "fa fa-arrow-down"
                }
          
     });
+
+
+    $('#reservationdate').datetimepicker({
+        format: 'L'
+    });
+
+    $('#reservationdateTo').datetimepicker({
+        format: 'L'
+    });
+
   
   
   </script>

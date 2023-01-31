@@ -7,6 +7,12 @@
     #show_district{
         list-style: none
     }
+
+    #show_district{
+        list-style: none
+    }
+
+    
 </style>
 
 <div class="card">
@@ -42,7 +48,7 @@
     <div class="card-header">
         <h3 class="card-title">DataTable with default features</h3>
         <button class="btn btn-warning float-right ml-1 mr-1">Affiliation Point </button>
-        <div class="float-right">
+        <div class="float-right balance_btn">
 
             <div class="d-flex" style="height: 2.5rem;
             width: 11rem;
@@ -50,7 +56,7 @@
             line-height: 2.5;
             padding-left: 1rem;background: orangered !important;color: white;
     font-weight: bold;">
-                <div class="d-none" style="margin-right: 16px;">
+                <div class="d-none balance_btn" style="margin-right: 16px;">
                     200923445.00tk 
                 </div>
                
@@ -63,7 +69,7 @@
                 margin-right: 8px;cursor: pointer;">
                 </div>
                
-                <div>
+                <div class="balance_btn">
                     Your Balance
                 </div>
             </div>
@@ -198,14 +204,14 @@ function show_blance(e){
    console.log(e.nextElementSibling)
 //    previousElementSibling
 
-console.log(e.nextElementSibling.style.display=='none')
-if(e.nextElementSibling.style.display=='none'){
-    console.log("Ok")
-}else{
-    console.log("Not OK")
-}
+
 e.nextElementSibling.classList.add('d-none');
 e.previousElementSibling.classList.remove('d-none');
+
+setTimeout(() => {
+e.nextElementSibling.classList.remove('d-none');
+e.previousElementSibling.classList.add('d-none');
+}, 3000);
 }
 
 </script>

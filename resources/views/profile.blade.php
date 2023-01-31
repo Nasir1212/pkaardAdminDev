@@ -98,18 +98,7 @@
 
 
 <script>
-    // console.log(District)
-    $('#datetimepicker4').datetimepicker({
-        format: 'DD/MM/YYYY',
-        viewMode: 'years',
-        icons: {
-                  time: "fa fa-clock-o",
-                  date: "fa fa-calendar",
-                   up: "fa fa-arrow-up",
-                   down: "fa fa-arrow-down"
-               }
-         
-    });
+   
 
 </script>
 
@@ -131,18 +120,6 @@
   <script src="{{ asset('assets/plugins/daterangepicker/daterangepicker.js')}}"></script>
   <script>
 
-$('#datetimepicker4').datetimepicker({
-        format: 'DD/MM/YYYY',
-        viewMode: 'years',
-        icons: {
-                  time: "fa fa-clock-o",
-                  date: "fa fa-calendar",
-                   up: "fa fa-arrow-up",
-                   down: "fa fa-arrow-down"
-               }
-         
-    });
-  
   
   </script>
 

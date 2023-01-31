@@ -75,38 +75,36 @@ let branch = ['Chattogram','Dhaka','Comilla','Sherpur','Satkhira','Feni','Khulna
    
 
 District.forEach(element => {
-   var  background = '';
+   var  background = ' bg-warning';
     branch.forEach(ele =>{
 
         if(element['name'] ==ele){
              background ='bg-success'
-            console.log( background)
+          
 
-        }else {
-            background ='bg-warning'
         }
     
-})
+      })
 
         district_elem += `
-        <div class='col-3'>
-                    <div class="small-box ${background}">
-                        <div class="inner">
-                          <h3>53<sup style="font-size: 20px"></sup></h3>
-          
-                          <p>${element['name']}</p>
-                        </div>
-                        <div class="icon">
-                          <i class="ion ion-stats-bars"></i>
-                        </div>
-                        <a href="{{url('Franchiac_summary_details')}}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-                      </div>
-                </div>
+      <div class='col-3'>
+          <div class="small-box  ${background}">
+              <div class="inner">
+                <h3>53<sup style="font-size: 20px"></sup></h3>
+
+                <p>${element['name']}</p>
+              </div>
+              <div class="icon">
+                <i class="ion ion-stats-bars"></i>
+              </div>
+              <a href="{{url('Franchiac_summary_details')}}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+      </div>
         `;
        
 
     });
-
+ 
     document.getElementById('show_district').innerHTML = district_elem
 }
    

@@ -49,12 +49,12 @@
             <div class="col-12">
                
                 <div>
-                    <a class="btn btn-warning">Yearly Report </a>
-                    <a  class = "btn btn-danger" href="">Monthly Report  </a>
-                    <a class="btn btn-info">Daily Report</a>
+                    <a class="btn btn-warning" data-btn_status="year" onclick="showing_remp_btn('year',this)">Yearly Report </a>
+                    <a  class = "btn btn-danger"  data-btn_status="month"  onclick="showing_remp_btn('month',this)" >Monthly Report  </a>
+                    <a class="btn btn-info"   data-btn_status="daily"   onclick="showing_remp_btn('daily',this)">Daily Report</a>
                 </div>
 
-                <div class="yearly_report d-none">
+                <div class="yearly_report d-none" id='year'>
                     <div>
                         <div class="form-group col-sm-12 col-md-7 col-lg-6">
                             <label for="">Select Year </label>
@@ -100,7 +100,7 @@
                 </div>
 
 
-                <div class="monthly_report  d-none">
+                <div class="monthly_report  d-none" id="month">
                     <div>
                         <div class="form-group col-sm-12 col-md-7 col-lg-6">
                             <label for="">Select Month </label>
@@ -159,21 +159,33 @@
                 </div>
 
 
-                <div class="monthly_report ">
+                <div class="monthly_report d-none" id="daily">
                     <div>
                         <div class="col-sm-12 col-md-7 col-lg-6 mt-3 d-flex">
 
                        
                         <div class="form-group ">
                             <label for=""> From </label>
-                           <input type="text" id="datetimepicker4">
+                            <div class="input-group date" id="reservationdate" data-target-input="nearest">
+                              <input type="text" class="form-control datetimepicker-input" data-target="#reservationdate">
+                              <div class="input-group-append" data-target="#reservationdate" data-toggle="datetimepicker">
+                                  <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                              </div>
+                          </div>
                         </div>
 
                         <div class="form-group ">
                             <label for=""> To </label> 
-                           <input type="text">
-                        </div>
+                            <div class="input-group date" id="reservationdateTo" data-target-input="nearest">
+                              <input type="text" class="form-control datetimepicker-input" data-target="#reservationdateTo">
+                              <div class="input-group-append" data-target="#reservationdateTo" data-toggle="datetimepicker">
+                                  <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                              </div>
+                          </div>
+                         </div>
                     </div>
+
+                  
                         <div class="form-group">
                             <div class="form-check">
                                 <input class="form-check-input" type="checkbox">
@@ -223,53 +235,51 @@
   <!-- /.content-wrapper -->
 
 
-<script>
-    // console.log(District)
-    $('#datetimepicker4').datetimepicker({
-        format: 'DD/MM/YYYY',
-        viewMode: 'years',
-        icons: {
-                  time: "fa fa-clock-o",
-                  date: "fa fa-calendar",
-                   up: "fa fa-arrow-up",
-                   down: "fa fa-arrow-down"
-               }
-         
-    });
-
-</script>
 
 
-  <script src="{{ asset('assets/plugins/datatables/jquery.dataTables.min.js')}}"></script>
-  <script src="{{ asset('assets/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js')}}"></script>
-  <script src="{{ asset('assets/plugins/datatables-responsive/js/dataTables.responsive.min.js')}}"></script>
-  <script src="{{ asset('assets/plugins/datatables-responsive/js/responsive.bootstrap4.min.js')}}"></script>
-  <script src="{{ asset('assets/plugins/datatables-buttons/js/dataTables.buttons.min.js')}}"></script>
-  <script src="{{ asset('assets/plugins/datatables-buttons/js/buttons.bootstrap4.min.js')}}"></script>
-  <script src="{{ asset('assets/plugins/jszip/jszip.min.js')}}"></script>
-  <script src="{{ asset('assets/plugins/pdfmake/pdfmake.min.js')}}"></script>
-  <script src="{{ asset('assets/plugins/pdfmake/vfs_fonts.js')}}"></script>
-  <script src="{{ asset('assets/plugins/datatables-buttons/js/buttons.html5.min.js')}}"></script>
-  <script src="{{ asset('assets/plugins/datatables-buttons/js/buttons.print.min.js')}}"></script>
-  <script src="{{ asset('assets/plugins/datatables-buttons/js/buttons.colVis.min.js')}}"></script>
-  <!-- AdminLTE App -->
-  <script src="{{ asset('assets/dist/js/adminlte.min.js')}}"></script>
-  <script src="{{ asset('assets/plugins/daterangepicker/daterangepicker.js')}}"></script>
+
+<script src="{{asset('assets/plugins/moment/moment.min.js')}}"></script>
+<script src="{{asset('assets/plugins/inputmask/jquery.inputmask.min.js')}}"></script>
+<!-- date-range-picker -->
+<script src="{{asset('assets/plugins/daterangepicker/daterangepicker.js')}}"></script>
+<!-- bootstrap color picker -->
+<script src="{{asset('assets/plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.min.js')}}"></script>
+<!-- Tempusdominus Bootstrap 4 -->
+<script src="{{asset('assets/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js')}}"></script>
+<!-- Bootstrap Switch -->
+<script src="{{asset('assets/plugins/bootstrap-switch/js/bootstrap-switch.min.js')}}"></script>
+<!-- BS-Stepper -->
+<script src="{{asset('assets/plugins/bs-stepper/js/bs-stepper.min.js')}}"></script>
+<!-- dropzonejs -->
+<script src="{{asset('assets/plugins/dropzone/min/dropzone.min.js')}}"></script>
+<!-- AdminLTE App -->
+<script src="{{asset('assets/dist/js/adminlte.min.js')}}"></script>
+<!-- AdminLTE for demo purposes -->
+<script src="{{asset('assets/dist/js/demo.js')}}"></script>
+
   <script>
 
-$('#datetimepicker4').datetimepicker({
-        format: 'DD/MM/YYYY',
-        viewMode: 'years',
-        icons: {
-                  time: "fa fa-clock-o",
-                  date: "fa fa-calendar",
-                   up: "fa fa-arrow-up",
-                   down: "fa fa-arrow-down"
-               }
-         
+
+  
+
+    $('#reservationdate').datetimepicker({
+        format: 'L'
     });
-  
-  
+
+    $('#reservationdateTo').datetimepicker({
+        format: 'L'
+    });
+  function showing_remp_btn(d,t){
+    ['year','month','daily'].forEach(ele=>{
+      document.getElementById(ele).classList.add('d-none')
+      document.querySelector(`[data-btn_status="${ele}"]`).style.cssText=''
+    })
+
+    document.getElementById(d).classList.remove('d-none')
+    console.log(t.dataset.btn_status)
+    document.querySelector(`[data-btn_status="${d}"]`).style.cssText='background-color:green !important;color:white !important;'
+    
+  }
   </script>
 
 @endsection

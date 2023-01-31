@@ -49,18 +49,25 @@
            <div class="col-12">
 
          <div class="row">
-            <div class="dropdown col-6">
-                <button class="btn btn-danger  dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <div class="dropdown col-4">
+                <button class="btn btn-danger w-100 dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <i class="far fa-comments"></i> SMS 
                 </button>
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                  <a class="dropdown-item" href="#">Action</a>
-                  <a class="dropdown-item" href="#">Another action</a>
-                  <a class="dropdown-item" href="#">Something else here</a>
+                  <a class="dropdown-item" href="#">Masking SMS </a>
+                  <hr>
+                  <a class="dropdown-item" href="#">Non Masking SMS</a>
+                 
                 </div>
               </div>
-            <button class="btn btn-info m-2 col-4"> <i class="nav-icon far fa-envelope"></i> Email </button>
-            <button class="btn btn-warning m-2 col-4">Whatsapp </button>
+              <div class=" col-4">
+                <button class="btn  w-100 btn-info"> <i class="nav-icon far fa-envelope"></i> Email </button>
+
+              </div>
+              <div class=" col-4">
+                <button class="btn   w-100 btn-warning   "><i class="fas fa-bullhorn"></i>  Whatsapp </button>
+
+              </div>
         </div>
           </div>
            </div>
@@ -77,40 +84,7 @@
   <!-- /.content-wrapper -->
 
 
-<script>
-    // console.log(District)
-    // $('#datetimepicker4').datetimepicker({
-    //     format: 'DD/MM/YYYY',
-    //     viewMode: 'years',
-    //     icons: {
-    //               time: "fa fa-clock-o",
-    //               date: "fa fa-calendar",
-    //                up: "fa fa-arrow-up",
-    //                down: "fa fa-arrow-down"
-    //            }
-         
-    // });
-
-</script>
-
-<script>
-  console.log(District)
-
  
-  window.onload = ()=>{
-let dist_ele = `<option > Select District  </option> <option> All District  </option>`;
-    District.forEach(element => {
-    console.log(element)
-dist_ele +=`<option value='${element['name']}' >${element['name']}</option> `;
-
-
-    
-  });
-
-document.getElementById('district').innerHTML = dist_ele;
-
-  }
-</script>
 
 
   <script src="{{ asset('assets/plugins/datatables/jquery.dataTables.min.js')}}"></script>
@@ -130,18 +104,6 @@ document.getElementById('district').innerHTML = dist_ele;
   <script src="{{ asset('assets/plugins/daterangepicker/daterangepicker.js')}}"></script>
   <script>
 
-$('#datetimepicker4').datetimepicker({
-        format: 'DD/MM/YYYY',
-        viewMode: 'years',
-        icons: {
-                  time: "fa fa-clock-o",
-                  date: "fa fa-calendar",
-                   up: "fa fa-arrow-up",
-                   down: "fa fa-arrow-down"
-               }
-         
-    });
-  
   
   </script>
 
