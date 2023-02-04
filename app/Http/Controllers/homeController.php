@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\card_registation;
+use App\Models\branch_user;
+use App\Models\OTP;
+use App\Mail\AdminOtpMail;
+use Illuminate\Support\Facades\Mail;
 class homeController extends Controller
 {
     public function get_all_register(){
@@ -89,6 +93,158 @@ class homeController extends Controller
     
           
       } 
+
+
+      public function branch(){
+
+        return view('branch_view');
+      }
+
+      public function branch_user(Request $req){
+            $name = $req->input('name');
+            $district = $req->input('district');
+            $mail = $req->input('mail');
+            $password =crypt($req->input('password'), 'pkaard') ;
+            $reference_code = $req->input('reference_code');
+
+            $result = branch_user::insert([
+                        'name'=>$name,
+                        'district'=>$district,
+                        'mail'=>$mail,
+                        'password'=>$password,
+                        'reference_code'=>$reference_code
+            ]);
+
+         if($result){
+                           
+            return  json_encode(array('message'=>'successfully Added','condition'=>true));
+         }else{
+            return json_encode(array('message'=>'failed Add','condition'=>false));
+         }
+               
+      }
     
+      public function get_branch_all_data(){
+         $data =  branch_user::all();
+         
+         return json_encode($data);
+      }
+
+      public function handle_branch_action($id,$action){
+         if($action=='get_one'):
+            $data =  branch_user::where(['id'=>$id])->get();
+            return json_decode($data);
+         endif;
+
+         if($action=='delete'):
+         $delete =    branch_user::where(['id'=>$id])->delete();
+         if($delete){
+            return json_encode(array('condition'=>true,'message'=>'successfully deleted'));
+         }else{
+            return json_encode(array('condition'=>false,'message'=>' delete failed'));
+
+         }
+         endif;
+
+      }
+
+      public function update_branch(Request $req){
+         $id = $req->input('id');
+         $name = $req->input('name');
+         $district = $req->input('district');
+         $mail = $req->input('mail');
+        
+         $reference_code = $req->input('reference_code');
+
+        $result =  branch_user::where(['id'=>$id])->update([
+            'name'=>$name,
+            'district'=>$district,
+            'mail'=>$mail,
+            'reference_code'=>$reference_code
+            
+         ]);
+
+         if($result){
+            return json_encode(array('condition'=>true,'message'=>'Updated successfully'));
+         }else{
+            return json_encode(array('condition'=>false,'message'=>'Updated failed'));
+         }
+      }
     
+      public function login_check(Request $req){
+
+         $mail = $req->input('mail');
+         $password = crypt($req->input('password'), 'pkaard') ;
+        $result =  branch_user::where(['mail'=>$mail,'password'=>$password])->count();
+
+      if($result==1){
+         $data =  branch_user::where(['mail'=>$mail,'password'=>$password])->get();
+         $req->session()->put(['data'=>$data]);
+         $req->session()->put(['mode'=>'branch']);
+         $req->session()->put(['is_login'=>true]);
+         // return redirect('/');
+         // return $req->session()->get('is_login');
+          return $req->session()->all();
+      }
+      }
+
+      public function send_otp_admin($mail){
+
+         if($mail == 'nnasiruddin1996@gmail.com'):
+         
+        $otp  =  rand(100000,999999);
+        $mail =  Mail::to($mail)->send(new AdminOtpMail($otp));
+
+        if($mail):
+          $sending_otp =  OTP::insert([
+              'otp'=>$otp,
+              'is_expired'=>0,
+              'create_at'=>date("Y-m-d H:i:s")
+            
+            ]);
+
+            if($sending_otp):
+               return json_encode(array('condition'=>true,'message'=>'OTP successfully Send in your mail'));
+            else:
+               return json_encode(array('condition'=>false,'message'=>'OTP Failed'));
+
+            endif;
+
+        
+
+         endif;
+
+        
+      else:
+         return json_encode(array('condition'=>false,'message'=>'Email not matched'));
+
+   endif;
+         // return $otp;
+
+      // return   OTP::where(['otp'=>$otp,'is_expired'=>'0','create_at'=>'NOW() <= DATE_ADD(create_at, INTERVAL 24 HOUR'])->get();
+
+      //return $results = \DB::select('SELECT  * FROM `otp_expired` WHERE `is_expired`=0 AND NOW() <= DATE_ADD(create_at, INTERVAL 24 HOUR)');
+      }
+
+
+      public function admin_otp_check(Request $req){
+
+         $otp = $req->input('otp');
+
+         $result = \DB::select('SELECT  * FROM `otp_expired` WHERE `is_expired`=0 AND `otp`=:otp AND NOW() <= DATE_ADD(create_at, INTERVAL 24 HOUR)',['otp'=>$otp]);
+         if(count($result)>0){
+            
+            \DB::update('UPDATE  `otp_expired` SET  `is_expired` = 1 where `otp` = ?', [$otp]);
+
+           
+         $req->session()->put(['mode'=>'admin']);
+         $req->session()->put(['is_login'=>true]);
+
+         \DB::delete('DELETE  FROM `otp_expired` WHERE  `is_expired` = 1 OR NOW() > DATE_ADD(create_at, INTERVAL 24 HOUR)');
+         return  $req->session()->all();
+         }
+
+
+
+      }
 }

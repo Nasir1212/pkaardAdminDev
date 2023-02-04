@@ -77,7 +77,7 @@
         <tr>
           <td>{{$i++}}</td>
             <td>1509002{{$fdata->card_id}}</td>
-            <td>{{$fdata->invoice_number}}</td>
+            <td>pw{{$fdata->invoice_number}}</td>
          
             <td>{{$fdata->full_name}}</td>
             <td>{{$fdata->email}}</td>

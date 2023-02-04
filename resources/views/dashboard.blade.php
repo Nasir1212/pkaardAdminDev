@@ -19,11 +19,11 @@
 <script src="{{ asset('assets/plugins/summernote/summernote-bs4.min.js')}} "></script>
 <!-- overlayScrollbars -->
 <script src="{{ asset('assets/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js')}} "></script>
-<!-- AdminLTE App -->
+{{-- <!-- AdminLTE App -->
 <script src="{{ asset('assets/dist/js/adminlte.js')}} "></script>
 <!-- AdminLTE for demo purposes -->
 <script src="{{ asset('assets/dist/js/demo.js')}} "></script>
-<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+<!-- AdminLTE dashboard demo (This is only for demo purposes) --> --}}
 <script src="{{ asset('assets/dist/js/pages/dashboard.js')}} "></script>
  <!-- Content Wrapper. Contains page content -->
  <div class="content-wrapper">

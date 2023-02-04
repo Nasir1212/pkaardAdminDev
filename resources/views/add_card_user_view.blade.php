@@ -662,9 +662,9 @@ fetch('card_registation_add', {
 if(data['condition']==true){
     swal("successful", "Successfully Registation", "success"); 
 }else{
-    swal("Opps!", "Successfully Registation", "error"); 
+    swal("Opps!", "Something went wrong", "error"); 
 }
-    console.log(data);
+    
 
   })
 }

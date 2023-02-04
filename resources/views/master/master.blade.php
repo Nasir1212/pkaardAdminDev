@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>pkaard | Dashboard</title>
+  <title>Pkaard | Dashboard</title>
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -31,7 +31,7 @@
   <link rel="stylesheet" href="{{ asset('assets/plugins/daterangepicker/daterangepicker.css')}}">
   <link href="https://fonts.googleapis.com/css2?family=Galada&family=Mina&family=Roboto:ital,wght@0,500;1,300&display=swap" rel="stylesheet">
   <link href="https://fonts.maateen.me/bangla/font.css" rel="stylesheet">
-  
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
 <!-- jQuery -->
 <script src="{{ asset('assets/plugins/jquery/jquery.min.js')}}"></script>
 <!-- jQuery UI 1.11.4 -->
@@ -45,6 +45,8 @@
 
  <!-- AdminLTE App -->
  <script src="{{ asset('assets/dist/js/adminlte.min.js')}}"></script>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js" integrity="sha512-E8QSvWZ0eCLGk4km3hxSsNmGWbLtSCSUcewDQPQWZF6pEU8GlT8a5fF32wOl1i8ftdMhssTrF/OhyGWwonTcXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+ <script src="{{ asset('assets/js/SessionExport.js')}}"></script>
 
 <style>
   label{
@@ -322,6 +324,17 @@
             </a>
           </li>
 
+          <li class="nav-item">
+            <a href="{{url('branch')}}" class="nav-link">
+              <i class="nav-icon fas fa-tree"></i>
+              <p>
+                Branch 
+                {{-- <span class="right badge badge-danger">New</span> --}}
+              </p>
+            </a>
+          </li>
+
+
 
           
 
@@ -375,10 +388,12 @@
 @yield('content')
  
   <footer class="main-footer">
-    <strong>Copyright &copy; 2014-2023 <a href="#">pkaard</a>.</strong>
+    <strong>Copyright &copy; 2022-2023 <a href="#">pkaard</a>.</strong>
     All rights reserved.
     <div class="float-right d-none d-sm-inline-block">
-      <b>Version</b> 3.2.0
+      <b> <a class="btn btn-danger d-flex "><span class="material-symbols-outlined">
+        exit_to_app
+        </span><b>Log Out</b></a> </b> 
     </div>
   </footer>
 

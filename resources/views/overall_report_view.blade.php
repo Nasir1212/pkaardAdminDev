@@ -252,10 +252,10 @@
 <script src="{{asset('assets/plugins/bs-stepper/js/bs-stepper.min.js')}}"></script>
 <!-- dropzonejs -->
 <script src="{{asset('assets/plugins/dropzone/min/dropzone.min.js')}}"></script>
-<!-- AdminLTE App -->
+{{-- <!-- AdminLTE App -->
 <script src="{{asset('assets/dist/js/adminlte.min.js')}}"></script>
 <!-- AdminLTE for demo purposes -->
-<script src="{{asset('assets/dist/js/demo.js')}}"></script>
+<script src="{{asset('assets/dist/js/demo.js')}}"></script> --}}
 
   <script>
 
