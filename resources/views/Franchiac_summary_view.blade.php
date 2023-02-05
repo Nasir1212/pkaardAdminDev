@@ -48,7 +48,21 @@
             <div class="col-12">
                
                 <ul id="show_district" class="row">
-                  
+                  @if(Session::get('mode')=='branch')
+                  <div class='col-3'>
+                    <div class="small-box  bg-success">
+                        <div class="inner">
+                          <h3>53<sup style="font-size: 20px"></sup></h3>
+          
+                          <p>Feni</p>
+                        </div>
+                        <div class="icon">
+                          <i class="ion ion-stats-bars"></i>
+                        </div>
+                        <a href="{{url('Franchiac_summary_details')}}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                      </div>
+                </div>
+                 @endif
                 </ul>
             </div>
         </div>
@@ -66,6 +80,7 @@
 
 <script>
     // console.log(District)
+    @if(Session::get('mode')=='admin')
 window.onload= ()=>{
 
     let district_elem = '';
@@ -107,7 +122,8 @@ District.forEach(element => {
  
     document.getElementById('show_district').innerHTML = district_elem
 }
-   
+  
+  @endif;
 </script>
 
 

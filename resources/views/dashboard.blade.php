@@ -54,9 +54,9 @@
             <!-- small box -->
             <div class="small-box bg-info">
               <div class="inner">
-                <h3>150</h3>
+                <h3>{{$visitor}}</h3>
              
-                <p>Total Website Visitors</p>
+                <p>Daily Website Visitors</p>
               </div>
               <div class="icon">
                 <i class="ion ion-bag"></i>
@@ -69,8 +69,7 @@
             <!-- small box -->
             <div class="small-box bg-success">
               <div class="inner">
-                <h3>53<sup style="font-size: 20px">%</sup></h3>
-
+                <h3>{{$daily}}</h3>
                 <p>Daily Card Registation</p>
               </div>
               <div class="icon">
@@ -84,7 +83,7 @@
             <!-- small box -->
             <div class="small-box bg-warning">
               <div class="inner">
-                <h3>44</h3>
+                <h3>{{$monthly}}</h3>
 
                 <p>Monthly Card  Registrations</p>
               </div>
@@ -99,7 +98,7 @@
             <!-- small box -->
             <div class="small-box bg-danger">
               <div class="inner">
-                <h3>65</h3>
+                <h3>{{$total_reg}}</h3>
 
                 <p>Total Card Registation</p>
               </div>

@@ -67,7 +67,10 @@
       <!-- /.social-auth-links -->
 
       <p class="mb-1">
-        <a >I forgot my password</a>
+        <a >
+          
+        
+          I forgot my password</a>
       </p>
      
     </div>
@@ -102,8 +105,19 @@ headers: new Headers({
 .then(response=>response.json())
 .then(data=>{
 console.log(data);
+if(data['is_login']){
   SessionExport.setSession(data);
+  location.href = `${location.origin}/`;
+}else{
+  swal ( "Oops" ,  data['message'] ,  "error" )
+
+}
+ 
 })
+.catch((error) => {
+  swal ( "Oops" ,  "Something went wrong" ,  "error" )
+    console.error('Error:', error);
+  });
     
     }
 </script>

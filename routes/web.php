@@ -32,6 +32,7 @@ Route::get('/admin_otp',function(){
     return view('admin_otp_view');
 });
 
+Route::get('/logout_auth','App\Http\Controllers\homeController@logout_auth');
 Route::get('/send_otp_admin/{mail}','App\Http\Controllers\homeController@send_otp_admin');
 Route::post('/login_check','App\Http\Controllers\homeController@login_check');
 Route::post('/admin_otp_check','App\Http\Controllers\homeController@admin_otp_check');
@@ -42,9 +43,7 @@ Route::get('/list_register','App\Http\Controllers\homeController@get_all_registe
 
 Route::post('/card_registation_add','App\Http\Controllers\homeController@card_registation_add')->middleware('login');
 
-Route::get('/', function () {
-    return view('dashboard');
-})->middleware('login');
+Route::get('/','App\Http\Controllers\homeController@dashboard')->middleware('login');
 
 Route::get('/mail_box',function(){
     return view('mail_box');

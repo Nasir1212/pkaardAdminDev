@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\card_registation;
 use App\Models\branch_user;
 use App\Models\OTP;
+use App\Models\IP;
+use Illuminate\Http\Response;
 use App\Mail\AdminOtpMail;
 use Illuminate\Support\Facades\Mail;
 class homeController extends Controller
@@ -17,6 +19,19 @@ class homeController extends Controller
 
 
     }
+    public function dashboard(){
+
+   
+      $visitor = count( IP::where(['ip'=>date('Y/m/d')])->get());
+      $total_reg = count( card_registation::all());
+      $daily=  count(card_registation::where(['register_date'=>date('Y/m/d')])->get());
+      $monthly=  count(card_registation::where('register_date','LIKE','%'.date('m').'%')->get());
+
+      return view('dashboard',['total_reg'=>$total_reg,'daily'=>$daily,'monthly'=>$monthly,'visitor'=>$visitor]);
+    }
+
+
+   
 
    
         public function card_registation_add(Request $req){
@@ -185,6 +200,9 @@ class homeController extends Controller
          // return redirect('/');
          // return $req->session()->get('is_login');
           return $req->session()->all();
+      }else{
+         return json_encode(array('condition'=>false,'message'=>'Email or Passwrod not matched'));
+
       }
       }
 
@@ -240,11 +258,21 @@ class homeController extends Controller
          $req->session()->put(['mode'=>'admin']);
          $req->session()->put(['is_login'=>true]);
 
+         // $response = new Response('pkaard');
+         // $time = 1; // 60 * 60 * 24 * 365;
+         // $response->withCookie(cookie('mode', 'admin',  $time));
+         // $response->withCookie(cookie('is_login', true, $time ));
+
          \DB::delete('DELETE  FROM `otp_expired` WHERE  `is_expired` = 1 OR NOW() > DATE_ADD(create_at, INTERVAL 24 HOUR)');
          return  $req->session()->all();
+       
+        // return json_encode(array('mode'=>$req->cookie('mode'),'is_login'=>$req->cookie('is_login')));
          }
 
+      }
 
-
+      public function logout_auth(Request $req){
+       $req->session()->flush();
+       return json_encode(array('condition'=>true));
       }
 }

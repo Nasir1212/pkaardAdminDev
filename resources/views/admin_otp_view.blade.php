@@ -89,6 +89,8 @@ headers: new Headers({
   SessionExport.setSession(data);
 if(data['is_login']==true){
   location.href = `${location.origin}/`;
+}else{
+  
 }
 
 })

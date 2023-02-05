@@ -3,7 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Pkaard | Dashboard</title>
+  {{-- <title>Pkaard | Dashboard</title> --}}
+  <title>{{ Session::get('mode') }}</title>
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -130,6 +131,7 @@
               <img src="dist/img/user8-128x128.jpg" alt="User Avatar" class="img-size-50  mr-3">
               <div class="media-body">
                 <h3 class="dropdown-item-title">
+
                   John Pierce
                   <span class="float-right text-sm text-muted"><i class="fas fa-star"></i></span>
                 </h3>
@@ -224,7 +226,10 @@
     <!-- Brand Logo -->
     <a href="index3.html" class="brand-link">
       <img src="{{asset('assets/images/pkaard_logo.jpeg')}}" alt="Pkaard Logo" class="brand-image  elevation-3" style="opacity: .8">
-      <span class="brand-text font-weight-light"> Admin</span>
+      <span class="brand-text font-weight-light">
+        Admin</span>
+        
+       
     </a>
 
     <!-- Sidebar -->
@@ -274,6 +279,8 @@
              
             </ul>
           </li>
+
+          @if(Session::get('mode')=='admin')
           <li class="nav-item">
             <a href="{{url('list_register')}}" class="nav-link">
               <i class="nav-icon fas fa-th"></i>
@@ -283,7 +290,11 @@
               </p>
             </a>
           </li>
+          
+   
 
+      
+     
           <li class="nav-item">
             <a href="{{url('corporate_report')}}" class="nav-link">
               <i class="nav-icon fas fa-th"></i>
@@ -293,7 +304,8 @@
               </p>
             </a>
           </li>
-          
+          @endif
+
           <li class="nav-item">
             <a href="{{url('Franchiac_summary')}}" class="nav-link">
               <i class="nav-icon fas fa-tree"></i>
@@ -303,7 +315,7 @@
               </p>
             </a>
           </li>
-
+          @if(Session::get('mode')=='admin')
           <li class="nav-item">
             <a href="{{url('communication_view')}}" class="nav-link">
               <i class="nav-icon fas fa-tree"></i>
@@ -313,16 +325,20 @@
               </p>
             </a>
           </li>
-
+     
           <li class="nav-item">
             <a href="{{url('add_card_user')}}" class="nav-link">
               <i class="nav-icon fas fa-tree"></i>
               <p>
                 Add Card User 
+                {{ request()->session()->get('mode') }}
+                
                 {{-- <span class="right badge badge-danger">New</span> --}}
               </p>
             </a>
           </li>
+        
+
 
           <li class="nav-item">
             <a href="{{url('branch')}}" class="nav-link">
@@ -334,7 +350,7 @@
             </a>
           </li>
 
-
+          @endif
 
           
 
@@ -390,8 +406,9 @@
   <footer class="main-footer">
     <strong>Copyright &copy; 2022-2023 <a href="#">pkaard</a>.</strong>
     All rights reserved.
-    <div class="float-right d-none d-sm-inline-block">
-      <b> <a class="btn btn-danger d-flex "><span class="material-symbols-outlined">
+    <div class="float-right d-none d-sm-inline-block" onclick="logout_auth();">
+      <b> <a class="btn btn-danger d-flex ">
+        <span class="material-symbols-outlined">
         exit_to_app
         </span><b>Log Out</b></a> </b> 
     </div>
@@ -404,6 +421,17 @@
   <!-- /.control-sidebar -->
 </div>
 <!-- ./wrapper -->
-
+<script>
+  function logout_auth(){
+    fetch(`logout_auth`)
+    .then(response=>response.json())
+    .then(data=>{
+      console.log(data)
+      if(data['condition']==true){
+        location.reload();
+      }
+    })
+  }
+</script>
 </body>
 </html>

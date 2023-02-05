@@ -17,13 +17,12 @@ class loginMiddleware
     public function handle(Request $request, Closure $next)
     {
         if($request->session()->get('is_login')!==true){
-
-            return redirect('/login');
+        //    dd($request->session()->get('is_login'));
+            return redirect('/selecting_login');
             
-        }
+        }    
            
-            return $next($request);
-        
-      
+        return $next($request);
+            // return redirect('/selecting_login');
     }
 }
