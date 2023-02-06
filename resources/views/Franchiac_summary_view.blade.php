@@ -79,33 +79,68 @@
 
 
 <script>
+
+
+
+
     // console.log(District)
     @if(Session::get('mode')=='admin')
 window.onload= ()=>{
 
-    let district_elem = '';
-    // var  background;
-    
-let branch = ['Chattogram','Dhaka','Comilla','Sherpur','Satkhira','Feni','Khulna','Mymensingh','Panchagarh','Gopalganj','Kushtia','Nilphamari','Dinajpur','Coxsbazar'];
-   
+  
 
+  showing_branch()
+
+   
+    
+//let branch = ['Chattogram','Dhaka','Comilla','Sherpur','Satkhira','Feni','Khulna','Mymensingh','Panchagarh','Gopalganj','Kushtia','Nilphamari','Dinajpur','Coxsbazar'];
+   
+}
+
+async function showing_branch(){
+
+
+  const response1 = await fetch(`counting_by_reference`)
+   const counting_by_reference = await response1.json()
+
+   const response2 = await fetch(`get_branch_all_data`)
+   const get_branch_all_data = await response2.json()
+console.log(counting_by_reference)
+console.log(get_branch_all_data)
+
+
+  let district_elem = '';
+    // var  background;
+  
 District.forEach(element => {
    var  background = ' bg-warning';
-    branch.forEach(ele =>{
+   var ref_count = '0';
+   get_branch_all_data.forEach(ele =>{
 
-        if(element['name'] ==ele){
+        if(element['name'] ==ele['district']){
              background ='bg-success'
-          
 
-        }
-    
+             counting_by_reference.forEach(e=>{
+              if(e['reference_code'] !=null){
+                if(e['reference_code'].toLowerCase()==ele['reference_code'].toLowerCase()){
+        console.log(e['reference_code'].toUpperCase())
+        ref_count = e['ref_total']
+       }
+              }
+      
+      })  
+
+        } 
+        
+       
       })
+ 
 
         district_elem += `
       <div class='col-3'>
           <div class="small-box  ${background}">
               <div class="inner">
-                <h3>53<sup style="font-size: 20px"></sup></h3>
+                <h3>${ref_count}<sup style="font-size: 20px"></sup></h3>
 
                 <p>${element['name']}</p>
               </div>
@@ -121,7 +156,23 @@ District.forEach(element => {
     });
  
     document.getElementById('show_district').innerHTML = district_elem
+
+
 }
+
+
+async function getData(){
+   
+   const response1 = await fetch(`counting_by_reference`)
+   const counting_by_reference = await response1.json()
+
+   const response2 = await fetch(`get_branch_all_data`)
+   const get_branch_all_data = await response2.json()
+console.log(data1)
+console.log(data2)
+   // do what you want with data1 and data2 here
+}
+
   
   @endif;
 </script>

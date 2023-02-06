@@ -84,6 +84,7 @@
                 <option value="District Coordinator ">District Coordinator </option>
                 <option value="Social Influencer ">Social Influencer </option>
                 <option value="Advertisement ">Advertisement </option>
+                <option selected='true' value="BACKHAND ">BACKHAND </option>
                 <option value="Other">Other </option>
             </select>
             <small id="" class="form-text text-muted"> </small>

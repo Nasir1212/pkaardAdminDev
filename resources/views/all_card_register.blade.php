@@ -99,10 +99,23 @@
             <td>{{$fdata->cda_apartment_no}}</td>
             <td>{{$fdata->cda_address_details}}</td>
             <td></td>
-            <td>
-              <button class="btn btn-outline-warning btn-danger font-weight-bold">Preview</button>
-              <button class="btn btn-outline-warning btn-danger font-weight-bold">Print</button>
+            <td style="width:20rem">
+              <p>
+              <a class="btn btn-warning btn-outline-danger font-weight-bold">
+                <span id="icon_on" class="material-symbols-outlined   cursor-pointer" style="display: block; cursor: pointer !important;"> visibility  </span>
+              </a>
+              <a class="btn btn-warning btn-outline-danger font-weight-bold">
+                <span class="material-symbols-outlined"  style="display: block; cursor: pointer !important;">
+                  picture_as_pdf
+                  </span>
+                </a>
 
+                <a  class="btn btn-warning btn-outline-danger font-weight-bold" onclick="showModel('{{$fdata->id}}')">
+                  <span class="material-symbols-outlined">
+                    drive_file_rename_outline
+                    </span>
+                  </a>
+              </p>
             </td>
 
 
@@ -111,30 +124,7 @@
 
 
         @endforeach
-            {{-- <tr> --}}
-{{--                 
-              
-        "cda_address_details" => "343"
-        "cda_apartment_no" => "3434"
-        "cda_district" => "chittagong"
-        "cda_division" => "chittagong"
-        "cda_house_no" => "21"
-        "cda_road_no" => "323/9"
-        "cda_upzilla" => "potiya"
-        "cda_village" => "lalrkhil"
-        "date_of_birth" => "11/10/2000"
-        "district" => "chittagong"
-        "division" => "chittagong"
-        "email" => "nnasiruddin1996@gmail.com"
-        "full_name" => "Nasir Uddin"
-        "gender" => "male"
-        "nationality" => "bangladeshi"
-        "phone_number" => "01890492444"
-        "reference_code" => "12121b6"
-        "upzilla" => "potiya"
-        "register_date" => "11/2/2023"
-        "invoice_number" => "12142323" --}}
-            {{-- </tr> --}}
+        
           </tbody>
           <tfoot>
             
@@ -178,7 +168,25 @@
   <!-- /.content-wrapper -->
 
 
-
+  <div class="modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Modal title</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p>Modal body text goes here.</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary">Update</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
 
   <script src="{{ asset('assets/plugins/datatables/jquery.dataTables.min.js')}}"></script>
@@ -199,7 +207,7 @@
 
 $(function () {
     $("#example1").DataTable({
-      "responsive": true, "lengthChange": true, "autoWidth": true,   order: [[1, 'desc' ]], "aLengthMenu": [[100, 250, 500,1000, -1], [100, 250, 500 ,1000, "All"]],
+      "responsive": false, "lengthChange": true, "autoWidth": true,   order: [[1, 'desc' ]], "aLengthMenu": [[100, 250, 500,1000, -1], [100, 250, 500 ,1000, "All"]],
     
       "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
     }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
@@ -214,6 +222,12 @@ $(function () {
     // });
   });
   
+
+  function showModel(id){
+
+    console.log(id)
+    $('#myModal').modal('show')
+  }
   </script>
 
 @endsection

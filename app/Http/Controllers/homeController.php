@@ -267,6 +267,8 @@ class homeController extends Controller
          return  $req->session()->all();
        
         // return json_encode(array('mode'=>$req->cookie('mode'),'is_login'=>$req->cookie('is_login')));
+         }else{
+            return json_encode(array('condition'=>false,'message'=>'Your OTP not correct'));
          }
 
       }
@@ -275,4 +277,14 @@ class homeController extends Controller
        $req->session()->flush();
        return json_encode(array('condition'=>true));
       }
+
+      public function counting_by_reference(){
+
+         $result = \DB::select('SELECT  COUNT(reference_code) AS ref_total, reference_code FROM `card_registation` GROUP BY reference_code');
+
+         return $result;
+
+
+      }
+
 }

@@ -39,6 +39,10 @@ Route::post('/admin_otp_check','App\Http\Controllers\homeController@admin_otp_ch
 
 
 
+
+Route::get('/counting_by_reference','App\Http\Controllers\homeController@counting_by_reference')->middleware('login');
+
+
 Route::get('/list_register','App\Http\Controllers\homeController@get_all_register')->middleware('login');
 
 Route::post('/card_registation_add','App\Http\Controllers\homeController@card_registation_add')->middleware('login');
