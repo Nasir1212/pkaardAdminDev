@@ -621,7 +621,7 @@ function mandatory_message(input_data){
     let elem ='';
     for (const key in input_data) {
           
-          if(key=='reference_code' || key=='agree_condition' || key == 'cda_upzilla'){
+          if(key=='reference_code' || key=='agree_condition' || key == 'cda_upzilla' || key=='email'){
           continue
           }
           elem = document.getElementsByName(`${key}`)[0]

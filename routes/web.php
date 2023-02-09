@@ -32,6 +32,14 @@ Route::get('/admin_otp',function(){
     return view('admin_otp_view');
 });
 
+
+Route::get('/excel',function(){
+    return view('exce_upload_view');
+})->middleware('login');
+
+Route::post('/excel_file_upload','App\Http\Controllers\homeController@excel_file_upload')->middleware('login');
+
+
 Route::get('/logout_auth','App\Http\Controllers\homeController@logout_auth');
 Route::get('/send_otp_admin/{mail}','App\Http\Controllers\homeController@send_otp_admin');
 Route::post('/login_check','App\Http\Controllers\homeController@login_check');
@@ -41,9 +49,13 @@ Route::post('/admin_otp_check','App\Http\Controllers\homeController@admin_otp_ch
 
 
 Route::get('/counting_by_reference','App\Http\Controllers\homeController@counting_by_reference')->middleware('login');
+Route::get('/get_one_data_card_register/{id}','App\Http\Controllers\homeController@get_one_data_card_register')->middleware('login');
 
 
 Route::get('/list_register','App\Http\Controllers\homeController@get_all_register')->middleware('login');
+Route::get('/get_all_card_register','App\Http\Controllers\homeController@get_all_card_register')->middleware('login');
+Route::post('/excel_data','App\Http\Controllers\homeController@excel_data')->middleware('login');
+Route::post('/delevery_stutus','App\Http\Controllers\homeController@delevery_stutus')->middleware('login');
 
 Route::post('/card_registation_add','App\Http\Controllers\homeController@card_registation_add')->middleware('login');
 

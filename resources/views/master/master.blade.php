@@ -331,14 +331,25 @@
               <i class="nav-icon fas fa-tree"></i>
               <p>
                 Add Card User 
-                {{ request()->session()->get('mode') }}
+
                 
                 {{-- <span class="right badge badge-danger">New</span> --}}
               </p>
             </a>
           </li>
         
-
+          <li class="nav-item">
+            <a href="{{url('excel')}}" class="nav-link">
+              <i class="nav-icon fas fa-tree"></i>
+              <p>
+                Excel File upload
+              
+                
+                {{-- <span class="right badge badge-danger">New</span> --}}
+              </p>
+            </a>
+          </li>
+        
 
           <li class="nav-item">
             <a href="{{url('branch')}}" class="nav-link">

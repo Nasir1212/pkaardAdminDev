@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use Shuchkin\SimpleXLSX;
 
 use Illuminate\Http\Request;
 use App\Models\card_registation;
@@ -15,9 +16,14 @@ class homeController extends Controller
     public function get_all_register(){
 
        $data =  card_registation::all();
-       return view('all_card_register',['data'=>$data]);
+       return view('all_card_register');
 
 
+    }
+
+    public function get_all_card_register(){
+      $data =  card_registation::orderBy('id', 'DESC')->get();
+      return $data;
     }
     public function dashboard(){
 
@@ -28,12 +34,16 @@ class homeController extends Controller
       $monthly=  count(card_registation::where('register_date','LIKE','%'.date('m').'%')->get());
 
       return view('dashboard',['total_reg'=>$total_reg,'daily'=>$daily,'monthly'=>$monthly,'visitor'=>$visitor]);
+   }
+   
+
+    
+    public function  get_one_data_card_register($id){
+      $data  =  card_registation::where(['id'=>$id])->get();
+      return $data;
     }
-
-
-   
-
-   
+    
+       
         public function card_registation_add(Request $req){
 
  
@@ -99,9 +109,12 @@ class homeController extends Controller
                 
               
             ]);
+
+                // return  json_encode(array('message'=>'successfully Registation','condition'=>true));
+
                 if($result){
                   
-                   return  json_encode(array('message'=>'successfully Registation','condition'=>true,'phone'=>$phone_number));
+                   return  json_encode(array('message'=>'successfully Registation','condition'=>true));
                 }else{
                    return json_encode(array('message'=>'failed Registation','condition'=>false));
                 }
@@ -286,5 +299,95 @@ class homeController extends Controller
 
 
       }
+
+
+
+      public function excel_file_upload(Request $req){
+
+       $excel_file =   $req->file('excel_file');
+
+       $xlsx = SimpleXLSX::parse($excel_file);
+       $header_values = $rows = [];
+    foreach ( $xlsx->rows() as $k => $r ) {
+        if ( $k === 0 ) {
+            $header_values = $r;
+            continue;
+        }
+        $rows[] = array_combine( $header_values, $r );
+    }
+    return $rows ;
+
+    
+      }
+
+      public function excel_data(Request $req){
+         $ex_data = $req->input('ex_data');
+         // $Mobile = $req->input('Mobile');
+         // $Name = $req->input('Name');
+        foreach( $ex_data as $data){
+       
+// return  $data;
+      if(count(card_registation::where(['phone_number'=>$data['Mobile']])->get()) ==0){
+
+         $card_id ='';
+         $invoice_number='';
+         $db_all_data =card_registation::all();
+         if(count( $db_all_data) > 0){
+         $card_id_in_db = card_registation::orderBy('card_id', 'desc')->take(1)->first();
+         $card_id  =  $card_id_in_db['card_id']+1;
+         $invoice_number= $card_id_in_db['invoice_number']+1;
+         }else{
+         $card_id =300000001;
+         $invoice_number=1500001;
+         // ALTER TABLE card_registation MODIFY email  varchar(255) null;
+         //ALTER IGNORE TABLE card_registation ADD UNIQUE (email);
+         //DROP INDEX email ON card_registation
+         }
+         $result =  card_registation::insert([
+
+            'cda_address_details' =>$data['Address'],
+            'nationality' =>"Bangladeshi",
+            'phone_number' =>$data['Mobile'],
+            'full_name' =>$data['Name'],
+            'card_id'=>$card_id,
+            'mediam'=>'BACKHAND',
+            'invoice_number'=>$invoice_number,
+            'register_date'=> date('Y/m/d') 
+            
+            
+         ]);
+         
+      }
+   }
+   
+         
+   if($result){
+                  
+      return  json_encode(array('message'=>'Excel File Uploaded Successfully','condition'=>true));
+   }else{
+      return json_encode(array('message'=>'Excel File Uploaded Failed','condition'=>false));
+   }
+
+
+  
+
+      }
+
+      public function delevery_stutus(Request $req){
+      
+         $id = $req->input('id');
+         
+        $result =  card_registation::where(['id'=>$id])->update([
+            'status'=>2
+         ]);
+
+         if( $result){
+            return json_encode(array('condition'=>true,'message'=>'Status Change Successfully'));
+         }else{
+            return json_encode(array('condition'=>false ,'message'=>'Status Change Failed'));
+         }
+
+      }
+
 
 }

@@ -16,6 +16,9 @@ class VerifyCsrfToken extends Middleware
         'branch_user',
         'update_branch',
         'login_check',
-        'admin_otp_check'
+        'admin_otp_check',
+        'excel_file_upload',
+        'excel_data',
+        'delevery_stutus'
     ];
 }
